@@ -1,0 +1,62 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: helloworld
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: helloworld-app
+  labels:
+    app: helloworld
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: helloworld
+  template:
+    metadata:
+      labels:
+        app: helloworld
+    spec:
+      containers:
+        - name: helloworld
+          image: "hello-world:0.0.1"
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+          ports:
+            - name: http
+              containerPort: 8080
+          resources:
+            limits:
+              cpu: 150m
+              memory: 300Mi
+            requests:
+              cpu: 100m
+              memory: 100Mi
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: helloworld
+  name: helloworld-svc
+  namespace: helloworld
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 8080
+    protocol: TCP
+    targetPort: http
+  selector:
+    app: helloworld
+  sessionAffinityConfig:
+    clientIP:
+      timeoutSeconds: 2
