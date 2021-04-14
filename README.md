@@ -1,6 +1,6 @@
-# Minikube Excercise
+# Minikube Exercise
 
-This repository contains a Go application that is a simple Hello World application that displays the name of the pod it's running on. The application is contained in a Docker container. A Kubernetes manifests is used to deploy the application to a Minikube cluster behind a load balancer in a new Namespace.
+This repository contains a Go application that is a simple Hello World application that displays the name of the pod it's running on. The application is contained in a Docker container. A Kubernetes manifest is used to deploy the application to a Minikube cluster behind a load balancer in a new Namespace.
 
 ## Prerequisites
 
@@ -27,7 +27,7 @@ Docker must be configured to use the Minikube Docker daemon as it has its own. T
 $ eval $(minikube -p minikube docker-env)
 ```
 
-If this step is not run the pods will have a `ImagePullBackOff` error as the docker images will be on the host machines Docker deamon and not Minikubes.
+If this step is not run the pods will have a `ImagePullBackOff` error as the docker images will be on the host machines Docker daemon and not Minikubes.
 
 ### Build HelloWorld Docker Image
 
@@ -58,7 +58,7 @@ $ minikube start
 
 ### Deploying Application to Minikube
 
-The Kubernetes manifests are located in the `/k8s` directory. It creates several resources on the Minikube cluster:
+The Kubernetes manifest is located in the `/k8s` directory. It creates several resources on the Minikube cluster:
 
 - A Kubernetes [Namespace](https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/) named `helloworld`
 - A Kubernetes [Deployment](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/) named `helloworld-app` with 2 [replicas](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#replicas)
@@ -99,7 +99,7 @@ The `install.sh` script is an easy way to build and deploy the application to a 
 
 ### Flags
 
-There are a couple Flags avaliable for the install script.
+There are a couple Flags available for the install script.
 
 | Flag               | Description              |
 |:------------------:| ------------------------ |
