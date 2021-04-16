@@ -9,6 +9,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: helloworld-app
+  namespace: helloworld
   labels:
     app: helloworld
 spec:
